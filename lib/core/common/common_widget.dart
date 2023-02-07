@@ -1,8 +1,34 @@
-
 import 'package:flutter/material.dart';
 import 'package:pokemony/core/theme/app_colors.dart';
 
 class CommonWidgets {
+  Future<bool?> showAlertDialog({
+    required BuildContext context,
+    required String title,
+    String? content,
+    String? cancelActionText,
+    String defaultActionText = 'OK',
+  }) async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: content != null ? Text(content) : null,
+        actions: <Widget>[
+          if (cancelActionText != null)
+            TextButton(
+              child: Text(cancelActionText),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+          TextButton(
+            child: Text(defaultActionText),
+            onPressed: () => Navigator.of(context).pop(true),
+          ),
+        ],
+      ),
+    );
+  }
+
   static Widget appTextField({
     TextEditingController? controller,
     String? hintText,
@@ -142,39 +168,11 @@ class CommonWidgets {
       style: TextStyle(
         color: color ?? kMainTextColor,
         fontFamily: 'Roboto',
-        
         fontSize: fontSize,
         letterSpacing: 0,
         fontWeight: fontWeight,
         height: height ?? 1.5384615384615385,
       ),
-    );
-  }
-
-  static Widget appSeparator({
-    double height = 1,
-    Color color = Colors.grey,
-    double dashWidth = 4.0,
-  }) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final double boxWidth = constraints.constrainWidth();
-        final double dashHeight = height;
-        final int dashCount = (boxWidth / (2 * dashWidth)).floor();
-        return Flex(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          direction: Axis.horizontal,
-          children: List<Widget>.generate(dashCount, (_) {
-            return SizedBox(
-              width: dashWidth,
-              height: dashHeight,
-              child: DecoratedBox(
-                decoration: BoxDecoration(color: color),
-              ),
-            );
-          }),
-        );
-      },
     );
   }
 }

@@ -8,10 +8,6 @@ import '../../providers/auth_provider.dart';
 
 class LoginPage extends ConsumerWidget {
   final GlobalKey<FormState> _formKey = GlobalKey();
-
-  //  TextEditingController to get the data from the TextFields
-  //  we can also use Riverpod to manage the state of the TextFields
-  //  but again I am not using it here
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _isLoading = false;
@@ -152,14 +148,14 @@ class LoginPage extends ConsumerWidget {
                               style: const TextStyle(color: Colors.black),
                               children: [
                                 TextSpan(
-                                    text: 'Sign up now',
-                                    // : 'Log in',
-                                    style:
-                                        TextStyle(color: Colors.blue.shade700),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        Get.to(() => const RegisterPage());
-                                      })
+                                  text: 'Sign up now',
+                                  // : 'Log in',
+                                  style: TextStyle(color: Colors.blue.shade700),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Get.off(() => RegisterPage());
+                                    },
+                                )
                               ],
                             ),
                           ),
