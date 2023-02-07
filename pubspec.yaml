@@ -20,6 +20,7 @@ dependencies:
   loading_overlay: ^0.3.0
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.5
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

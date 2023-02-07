@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545352099733",
+    "project_id": "pokemony-ad458",
+    "storage_bucket": "pokemony-ad458.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545352099733:android:2d4593d9c0c0df9cff389c",
+        "android_client_info": {
+          "package_name": "com.example.pokemony"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545352099733-va6u22fnd1aqlpjmuteknc0ob7g62feo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl0gKRXR6R3nJQSksRXIxQp0SHErU1gBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545352099733-va6u22fnd1aqlpjmuteknc0ob7g62feo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

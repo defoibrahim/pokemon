@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:pokemony/features/auth/auth_checker_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -8,6 +10,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      Get.to(const AuthChecker());
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
