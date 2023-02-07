@@ -13,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      Get.to(const AuthChecker());
+      Get.offAll(() => const AuthChecker());
     });
     super.initState();
   }
