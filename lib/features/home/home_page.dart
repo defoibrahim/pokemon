@@ -2,10 +2,13 @@ import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/route_manager.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
+import 'package:pokemony/features/bucket/bucket_page.dart';
 import 'package:pokemony/features/favorite/favorite_page.dart';
 import 'package:pokemony/features/profile/profile_page.dart';
-
+import 'package:badges/badges.dart' as badges;
+import '../../providers/bucket_provider.dart';
 import '../../providers/pokemon_provider.dart';
 import '../pokemon/pokemon_page.dart';
 
@@ -13,7 +16,7 @@ class HomePage extends ConsumerWidget {
   HomePage({super.key});
   List<Widget> pages = [
     const ProfilePage(),
-    const PokemonPage(),
+    PokemonPage(),
     const FavoritePage(),
   ];
   String getTitle(int val) {
@@ -23,7 +26,7 @@ class HomePage extends ConsumerWidget {
       case 1:
         return 'Pokemony';
       case 2:
-        return 'Profile';
+        return 'Favorite';
       default:
     }
     return '';
@@ -41,6 +44,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int menuIndex = ref.watch(indexProvider);
+    int itemCount = ref.watch(bucketProvider.notifier).bucketList.length;
     return DoubleBack(
       child: Scaffold(
         appBar: AppBar(
@@ -49,9 +53,15 @@ class HomePage extends ConsumerWidget {
           actions: [
             IconButton(
               onPressed: () {
-                // ref.read(authenticationProvider).signOut();
+                Get.to(() => BucketPage());
               },
-              icon: const Icon(Icons.add_shopping_cart_sharp),
+              icon: badges.Badge(
+                badgeContent: Text(
+                  '${itemCount}',
+                  style: TextStyle(fontSize: 14),
+                ),
+                child: Icon(Icons.add_shopping_cart),
+              ),
             )
           ],
         ),

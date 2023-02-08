@@ -30,7 +30,13 @@ class LoginPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Center(child: FlutterLogo(size: 81)),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/pokemon-logo.png',
+                          height: 150,
+                          width: 200,
+                        ),
+                      ),
                       const Spacer(flex: 1),
                       Container(
                         margin: const EdgeInsets.symmetric(

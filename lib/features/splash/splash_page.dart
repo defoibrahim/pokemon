@@ -20,9 +20,40 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Splash screen'),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff000000),
+              Color(0xff434343),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/pokemon-logo.png',
+                height: 200,
+                width: 200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Welcome to the Pokemon App',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

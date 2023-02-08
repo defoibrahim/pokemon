@@ -9,36 +9,50 @@ Pokemon pokemonFromJson(String str) => Pokemon.fromJson(json.decode(str));
 String pokemonToJson(Pokemon data) => json.encode(data.toJson());
 
 class Pokemon {
-    Pokemon({
-        this.id,
-        this.name,
-        this.image,
-    });
+  Pokemon({
+    this.name,
+    this.url,
+    this.isFavourite,
+  });
 
-    int? id;
-    String? name;
-    String? image;
+  String? name;
+  String? url;
+  bool? isFavourite;
 
-    Pokemon copyWith({
-        int? id,
-        String? name,
-        String? image,
-    }) => 
-        Pokemon(
-            id: id ?? this.id,
-            name: name ?? this.name,
-            image: image ?? this.image,
-        );
+  Pokemon copyWith({
+    String? name,
+    String? url,
+    bool? isFavourite,
+  }) =>
+      Pokemon(
+        name: name ?? name,
+        url: url ?? url,
+        isFavourite: isFavourite ?? isFavourite,
+      );
 
-    factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
-        id: json["id"],
+  factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
         name: json["name"],
-        image: json['sprites']['other']['home']["front_default"],
-    );
+        url: json['url'],
+        isFavourite: false,
+      );
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
+  Map<String, dynamic> toJson() => {
         "name": name,
-        "image": image,//! check image after save locally
-    };
+        "url": url, //! check image after save locally
+      };
+
+  factory Pokemon.fromRawJson(String str) => Pokemon.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+}
+
+extension PokemonExtension on Pokemon {
+  String get id {
+    final data = url?.split('/');
+    data?.removeLast();
+    return data?.last ?? '1';
+  }
+
+  String get getImageUrl =>
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png';
 }

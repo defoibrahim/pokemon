@@ -23,6 +23,9 @@ dependencies:
   get: ^4.6.5
   circular_bottom_navigation: ^2.3.0
   molten_navigationbar_flutter: ^1.0.1
+  cached_network_image: ^3.2.3
+  palette_generator: ^0.3.3+2
+  badges: ^3.0.2
 
 dev_dependencies:
   flutter_test:

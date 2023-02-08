@@ -18,7 +18,6 @@ class DioClient {
       onRequest:
           (RequestOptions options, RequestInterceptorHandler handler) async {
         options.headers['Content-Type'] = 'application/json';
-        options.queryParameters['api-key'] = kApiKey;
         return handler.next(options);
       },
       onResponse:

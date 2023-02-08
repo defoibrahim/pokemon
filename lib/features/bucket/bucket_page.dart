@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokemony/models/pokemon.dart';
+import 'package:get/utils.dart';
 
-import '../../providers/favorite_provider.dart';
+import '../../models/pokemon.dart';
+import '../../providers/bucket_provider.dart';
 
-class FavoritePage extends ConsumerWidget {
-  const FavoritePage({super.key});
+class BucketPage extends ConsumerWidget {
+  const BucketPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(favoriteProvider);
+    final data = ref.watch(bucketProvider);
     final isLoading = ref.watch(isLoadingProductsProvider);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Bucket'),
+      ),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(),
             )
           : data.isEmpty
-              ? const Center(child: Text('No items, please Add Some'))
+              ? const Center(child: Text('No Data Please Add Some Items'))
               : ListView.separated(
                   itemCount: data.length,
                   separatorBuilder: (BuildContext context, int index) {
@@ -26,24 +30,24 @@ class FavoritePage extends ConsumerWidget {
                     );
                   },
                   itemBuilder: (BuildContext context, int index) {
-                    return FavoriteBody(
+                    return BucketBody(
                       data[index],
                     );
                   },
-                ),
+                ).paddingOnly(top: 20),
     );
   }
 }
 
-class FavoriteBody extends StatefulWidget {
-  const FavoriteBody(this.data, {super.key});
+class BucketBody extends StatefulWidget {
+  const BucketBody(this.data, {super.key});
   final Pokemon data;
 
   @override
-  State<FavoriteBody> createState() => _FavoriteBodyState();
+  State<BucketBody> createState() => _BucketBodyState();
 }
 
-class _FavoriteBodyState extends State<FavoriteBody> {
+class _BucketBodyState extends State<BucketBody> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -57,9 +61,7 @@ class _FavoriteBodyState extends State<FavoriteBody> {
             ),
             onPressed: () {
               setState(() {
-                ref
-                    .watch(favoriteProvider.notifier)
-                    .removeFavorite(widget.data);
+                ref.watch(bucketProvider.notifier).removeBucket(widget.data);
               });
             },
           );
