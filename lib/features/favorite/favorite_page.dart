@@ -7,12 +7,6 @@ class FavoritePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-       appBar: AppBar(
-          title: const Text('favorite'),
-          centerTitle: true,
-          actions: [
-          ],
-        ),
         body: const Center(child: Text('favorite')),
     );
   }

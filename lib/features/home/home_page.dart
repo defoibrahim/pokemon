@@ -16,6 +16,19 @@ class HomePage extends ConsumerWidget {
     const PokemonPage(),
     const FavoritePage(),
   ];
+  String getTitle(int val) {
+    switch (val) {
+      case 0:
+        return 'Profile';
+      case 1:
+        return 'Pokemony';
+      case 2:
+        return 'Profile';
+      default:
+    }
+    return '';
+  }
+
   List<TabItem> tabItems = List.of([
     TabItem(Icons.person_2_outlined, "Profile", Colors.blue,
         labelStyle: const TextStyle(fontWeight: FontWeight.normal)),
@@ -30,18 +43,18 @@ class HomePage extends ConsumerWidget {
     final int menuIndex = ref.watch(indexProvider);
     return DoubleBack(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('Pokemony'),
-        //   centerTitle: true,
-        //   actions: [
-        //     IconButton(
-        //       onPressed: () {
-        //         ref.read(authenticationProvider).signOut();
-        //       },
-        //       icon: const Icon(Icons.exit_to_app),
-        //     )
-        //   ],
-        // ),
+        appBar: AppBar(
+          title: Text(getTitle(menuIndex)),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                // ref.read(authenticationProvider).signOut();
+              },
+              icon: const Icon(Icons.add_shopping_cart_sharp),
+            )
+          ],
+        ),
         body: pages[menuIndex],
         bottomNavigationBar: MoltenBottomNavigationBar(
           selectedIndex: menuIndex,
