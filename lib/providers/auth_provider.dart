@@ -58,7 +58,7 @@ class Authentication {
       );
       if (result.user != null) {
         // save the current user
-        Get.offAll(() => const HomePage());
+        Get.offAll(() => HomePage());
       }
     } on FirebaseAuthException catch (e) {
       await CommonWidgets().showAlertDialog(

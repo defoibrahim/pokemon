@@ -6,6 +6,9 @@ const Color kMainColor = Color(0xFF918BF2);
 const Color kMainColorDark = Color(0xFF002ac9);
 const Color kMainColorLight = Color(0xFF6f7eff);
 
+const primaryColor = Color(0xff296e48);
+const blackColor = Colors.black54;
+
 const Color kAccentColor = Color(0xFF918bf2);
 const Color kAccentColorDark = Color(0xFF5e5ebf);
 const Color kAccentColorLight = Color(0xFFc4bbff);
